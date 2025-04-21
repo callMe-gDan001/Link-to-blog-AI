@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <title>Document</title>
+    <title>Signup</title>
 </head>
 <body class="bg-gray-100 font-sans antialiased" >
     <!-- Navbar -->
-    <nav class="bg-blue-600 p-4 text-white flex justify-between">
+    <nav class="bg-green-700 p-4 text-white flex justify-between">
         <div>
-            <h1 class="text-3xl font-bold">AI Blog Generator</h1>
+            <h1 class="text-3xl font-bold">Mona</h1>
         </div>
         <div>
-            <a href="login" class="text-white hover:underline">Login</a>
-            <a href="signup" class="text-white hover:underline">Signup</a>
+            <button style="background-color: black"><a href="Login" class="text-white hover:underline">Login</a></button>
         </div>
     </nav>
 
@@ -25,11 +24,16 @@
         <div class="bg-white p-8 shadow-md rounded-lg max-w-md w-full">
 
             <!--- SIGN UP FORM -->
-            <form action="" class="space-y-4">
+            <form action="" class="space-y-4" method="POST">
+                {% csrf_token %}
+                {% for message in messages %}
+                    <h3 style="color: red">{{ message }}</h3>
+                {% endfor %}
+                
                 <h2 class="text-xl font-semibold">Sign Up</h2>
                 <div>
                     <label for="Username" class="block mb-1 font-medium">Username</label>
-                    <input type="text" id="Username" name="Username" placeholder="Enter Username" class="w-full p-2 border rounded">
+                    <input type="text" id="username" name="username" placeholder="Enter Username" class="w-full p-2 border rounded">
                 </div>
                 <div>
                     <label for="email" class="block mb-1 font-medium">Email</label>
@@ -37,14 +41,15 @@
                 </div>
                 <div>
                     <label for="Password" class="block mb-1 font-medium">Password</label>
-                    <input type="password" id="Password" name="Password" placeholder="Enter Password" class="w-full p-2 border rounded">
+                    <input type="password" id="password" name="password" placeholder="Enter Password" class="w-full p-2 border rounded">
                 </div>
                 <div>
-                    <label for="repeatPassword" class="block mb-1 font-medium">Repeat Password</label>
-                    <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Repeat Password" class="w-full p-2 border rounded">
+                    <label for="repeatPassword" class="block mb-1 font-medium">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repeat Password" class="w-full p-2 border rounded">
                 </div>
-                <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Sign Up</button>
+                <button type="submit" class="w-full bg-green-700 text-white p-2 rounded hover:bg-blue-700">Sign Up</button>
             </form>
+            <h5 style="color: green"><a href="Login">Already have an account? Kindly login</a></h5>
         </div>
     </div>
 </body>

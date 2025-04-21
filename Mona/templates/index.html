@@ -50,14 +50,26 @@
 <body class="flex flex-col min-h-screen bg-gray-100 font-sans antialised">
     
     <!--  NAV BAR -->
+   {%  if user.is_authenticated %}
     <nav class="bg-green-700 p-4 text-white flex justify-between">
         <div>
             <h1 class="text-3xl font-bold">myMona</h1>
         </div>
         <div>
-            <a href="#" class="text-white hover:underline">Logout</a>
+            <h3>Welcome {{ user.username }}</h3>
+            <a href="Logout" class="text-white hover:underline">Logout</a>
         </div>
     </nav>
+    {% else %}
+        <nav class="bg-green-700 p-4 text-white flex justify-between">
+            <div>
+                <h1 class="text-3xl font-bold">myMona</h1>
+            </div>
+            <div>
+                <a href="Login"><button class="text-white hover:underline bg-black-700">Login or Signup</button></a>
+            </div>
+        </nav>
+    {% endif %}
 
     <!-- MAIN -->
     <div class="flex-grow container mx-auto mt-10 sm:px-0">
@@ -80,7 +92,7 @@
                 </h2>
                 <div class="flex-space-x-4">
                     <input type="url" id="youtubelink" placeholder="Enter Youtube Link" class="flex-grow p-2 border border-blue-400 rounded-l-md ">
-                    <button id="generateblog" class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors">Generate</button>
+                    <button id="generateblog" class="bg-green-700 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors">Generate</button>
                 </div>
             </div>
 
