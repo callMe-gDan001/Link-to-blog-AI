@@ -2,12 +2,18 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
+import json
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
 # Create your views here.
 
 
 def index(request):
     return render(request, "index.html")
+
+
+### AUTHENTICATION BEGIN
 
 def Signup(request):
     if request.method == 'POST':
@@ -53,3 +59,19 @@ def Login(request):
 def Logout(request):
     logout(request)
     return redirect("/")
+
+
+### AUTHENTICATION ENDED
+
+
+@csrf_exempt
+def generate_blog(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            yt_link = data.get('link')
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON format"}, status=400)
+            
+            
+    return JsonResponse({"error": "Invalid request method"}, status=405)
