@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>myMona</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <title>Mona AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <style>
         @keyframes rotate {
             from {
@@ -39,86 +40,88 @@
             -webkit-animation-iteration-count:  infinite;
             -webkit-animation-timing-function: linear;
                 
-            transition: all 0.5s ease-in;
-            animation-name:        rotate; 
+                 transition: all 0.5s ease-in;
+            animation-name:             rotate; 
             animation-duration:         1.0s; 
             animation-iteration-count:  infinite;
             animation-timing-function: linear; 
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen bg-gray-100 font-sans antialised">
-    
-    <!--  NAV BAR -->
-   {%  if user.is_authenticated %}
-    <nav class="bg-green-700 p-4 text-white flex justify-between">
-        <div>
-            <h1 class="text-3xl font-bold">myMona</h1>
-        </div>
-        <div>
-            <h3>Welcome {{ user.username }}</h3>
-            <a href="Logout" class="text-white hover:underline">Logout</a>
-        </div>
-    </nav>
-    {% else %}
-        <nav class="bg-green-700 p-4 text-white flex justify-between">
+<body class="flex flex-col min-h-scrren bg-gray-100 font-sans antialised">
+    {% if user.is_authenticated %}
+        <!-- Navbar -->
+        <nav class="bg-gray-800 p-4 text-white flex justify-between">
             <div>
-                <h1 class="text-3xl font-bold">myMona</h1>
+                <h1 class="text-3xl font-bold">Mona AI</h1>
             </div>
             <div>
-                <a href="Login"><button class="text-white hover:underline bg-black-700">Login or Signup</button></a>
+                <a href="#" class="text-white hover:underline mx-4">Welcome {{ user.username }}</a>
+                <a href="#" class="text-white hover:underline mx-4">Saved Blog Posts</a>
+                <a href="Logout" class="text-white hover:underline">Logout</a>
+            </div>
+        </nav>
+    {% else %}
+        <nav class="bg-gray-800 p-4 text-white flex justify-between">
+            <div>
+                <h1 class="text-3xl font-bold">Mona AI</h1>
+            </div>
+            <div>
+                <a href="Login" class="text-white hover:underline">Login or Signup</a>
             </div>
         </nav>
     {% endif %}
 
-    <!-- MAIN -->
-    <div class="flex-grow container mx-auto mt-10 sm:px-0">
+
+    <br>
+    <br>
+
+    <!-- Main -->
+    <div class="flex-grow container mx-auto mt-10 px-4 sm:px-0">
         <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 flex flex-col">
 
-            <!---- INTRODUCTION SEECTION -->
+            <!-- Introduction section -->
             <div class="text-center">
-                <h2 class="text-2xl font-semibold nb-4">Welcome to myMona</h2>
+                <h2 class="text-2xl font-semibold mb-4">Welcome to the Mona AI</h2>
                 <p class="text-gray-700">
-                    Generate high quality blog articles from youtube links using AI. simply enter the link and let AI do the rest.
+                    Generate high-quality blog articles from YouTube videos using artificial intelligence.
+                    Simply enter the link to the YouTube video below and let the AI create the content for you!
                 </p>
             </div>
 
             <br>
 
-            <!---YOUTUBE SECTION -->
+            <!-- Youtube section -->
             <div>
-                <h2 class="text-xl mb-4 font-semibold">
-                    Enter Youtube Link
-                </h2>
-                <div class="flex-space-x-4">
-                    <input type="url" id="youtubelink" placeholder="Enter Youtube Link" class="flex-grow p-2 border border-blue-400 rounded-l-md ">
-                    <button id="generateBlogButton" class="bg-green-700 text-white px-4 py-2 rounded-r-md hover:bg-gray-700 transition-colors">Generate</button>
+                <h2 class="text-xl mb-4 font-semibold">Enter Youtube Video Link</h2>
+                <div class="flex space-x-4">
+                    <input id="youtubeLink" type="url" placeholder="Paste Youtube Link..." class="flex-grow p-2 border border-blue-400 rounded-l-md">
+                    <button id="generateBlogButton" class="bg-gray-800 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors">Generate</button>
                 </div>
             </div>
 
-            <!---- Section for loading circle -->
-            <div style="display: none;" id="loading-circle" class="load">
 
-            </div>
+            <!-- section for loading circle -->
+            <div style="display: none;" id="loading-circle" class="load"></div>
 
-            <!---- GENERATED BLOG SEECTION-->
 
+            <!-- Generated Blog Display Section -->
             <section class="mt-10 flex-grow">
-                <h2 class="text-xl- mb-4 font-semibold">Generated Blog Article</h2>
-
-                <div id="blogContent" class="mt-2 text-gray-700">
+                <h2 class="text-xl mb-4 font-semibold">Generated Blog Article</h2>
+                <div id="blogContent" class="mt-2 text-gray-700 space-y-4">
                     
                 </div>
             </section>
-
         </div>
     </div>
-    <footer class="text-center p-4 text-black mt-6">
-        Powered by gDan
+
+
+    <footer class="text-center p-4 text-blacl mt-6">
+        Powered by <a href="https://www.youtube.com/codewithtomi">Code With Tomi</a>
     </footer>
 
     <script>
-        document.getElementById('generateBlogButton').addEventListener('click', async() => {
+        document.getElementById('generateBlogButton').addEventListener('click', async () => {
             
 
             const youtubeLink = document.getElementById('youtubeLink').value;

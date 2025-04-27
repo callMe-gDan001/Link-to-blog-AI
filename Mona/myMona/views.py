@@ -70,6 +70,9 @@ def generate_blog(request):
         try:
             data = json.loads(request.body)
             yt_link = data.get('link')
+            print(yt_link)
+            
+            return JsonResponse({"content": "Blog successful!"})
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON format"}, status=400)
             
